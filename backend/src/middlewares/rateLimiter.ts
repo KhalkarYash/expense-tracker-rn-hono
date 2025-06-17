@@ -7,7 +7,7 @@ const rateLimiter = async (c: Context<Environment>, next: Next) => {
   try {
     const ratelimit = getRateLimit(c);
     const userIp = c.req.header("cf-connecting-ip");
-    console.log("User IP:", userIp);
+    console.error("User IP:", userIp);
     const { success } = await ratelimit.limit(userIp || "default");
 
     if (!success) {

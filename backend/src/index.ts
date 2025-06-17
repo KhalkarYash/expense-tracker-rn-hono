@@ -8,8 +8,6 @@ import { Environment } from "./types/types";
 const app = new Hono<Environment>();
 
 app.use("*", async (c: Context<Environment>, next: Next) => {
-  console.log("URL:", c.env.UPSTASH_REDIS_REST_URL);
-  console.log("Token:", c.env.UPSTASH_REDIS_REST_TOKEN);
   const db = connectDB(c.env.DATABASE_URL);
   try {
     c.set("db", db);

@@ -19,7 +19,7 @@ export const getTransaction = async (c: Context) => {
       StatusCodes.OK
     );
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return c.json(
       { message: "Internal Server Error" },
       StatusCodes.INTERNAL_SERVER_ERROR
@@ -41,7 +41,6 @@ export const addTransaction = async (c: Context) => {
       VALUES (${title}, ${amount}, ${category}, ${user_id})
       RETURNING *
       `;
-    console.log(transaction);
     return c.json(
       {
         message: "Transaction created successfully",
@@ -50,7 +49,7 @@ export const addTransaction = async (c: Context) => {
       StatusCodes.CREATED
     );
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return c.json(
       { message: "Internal Server Error" },
       StatusCodes.INTERNAL_SERVER_ERROR
@@ -82,7 +81,7 @@ export const deleteTransaction = async (c: Context) => {
       StatusCodes.OK
     );
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return c.json(
       { message: "Internal Server Error" },
       StatusCodes.INTERNAL_SERVER_ERROR
@@ -120,7 +119,7 @@ export const getTransactionSummary = async (c: Context) => {
       StatusCodes.OK
     );
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return c.json(
       { message: "Internal Server Error" },
       StatusCodes.INTERNAL_SERVER_ERROR
