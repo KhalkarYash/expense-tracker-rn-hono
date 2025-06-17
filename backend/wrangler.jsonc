@@ -2,13 +2,16 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "paysa-backend",
   "main": "src/index.ts",
-  "compatibility_date": "2025-06-16"
+  "compatibility_date": "2025-06-16",
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
-  // "vars": {
-  //   "MY_VAR": "my-variable"
-  // },
+  "vars": {
+    "DATABASE_URL": "Database Url",
+    "CLERK_KEY": "Clerk Key",
+    "UPSTASH_REDIS_REST_URL": "Redis Url",
+    "UPSTASH_REDIS_REST_TOKEN": "Redis Token"
+  }
   // "kv_namespaces": [
   //   {
   //     "binding": "MY_KV_NAMESPACE",
