@@ -1,8 +1,7 @@
+import { API_URL } from "@/constants/api";
 import { Summary, Transaction } from "@/types/types";
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
-
-const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
 type TransactionResponse = {
   message: string;
