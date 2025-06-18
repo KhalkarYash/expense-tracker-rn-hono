@@ -23,14 +23,6 @@ app.use("*", async (c: Context<Environment>, next: Next) => {
 });
 
 app.use("*", rateLimiter);
-app.use(
-  "/api/signin",
-  async (c: Context<Environment>, next: Next) => await next()
-);
-app.use(
-  "/api/signup",
-  async (c: Context<Environment>, next: Next) => await next()
-);
 
 // Mount the router
 app.route("/", transactionRouter);

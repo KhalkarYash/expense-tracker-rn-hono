@@ -5,6 +5,7 @@ import { Link, useRouter } from "expo-router";
 import { styles } from "@/assets/styles/auth.styles";
 import { COLORS } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -38,7 +39,6 @@ export default function SignUpScreen() {
       // See https://clerk.com/docs/custom-flows/error-handling
       // for more info on error handling
       setError(err.errors[0].message);
-      console.error(JSON.stringify(err, null, 2));
     }
   };
 
@@ -67,7 +67,6 @@ export default function SignUpScreen() {
       // See https://clerk.com/docs/custom-flows/error-handling
       // for more info on error handling
       setError(err.errors[0].message);
-      console.error(JSON.stringify(err, null, 2));
     }
   };
 
@@ -100,12 +99,11 @@ export default function SignUpScreen() {
   }
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignContent: "center",
-        justifyContent: "center",
-      }}
+    <KeyboardAwareScrollView
+      style={{ flex: 1 }}
+      contentContainerStyle={{ flexGrow: 1 }}
+      enableAutomaticScroll={true}
+      enableOnAndroid={true}
     >
       <View style={styles.container}>
         <Image
@@ -155,6 +153,6 @@ export default function SignUpScreen() {
           </Link>
         </View>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 }

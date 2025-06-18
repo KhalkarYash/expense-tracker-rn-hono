@@ -5,6 +5,7 @@ import React from "react";
 import { styles } from "@/assets/styles/auth.styles";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "@/constants/Colors";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function Page() {
   const { signIn, setActive, isLoaded } = useSignIn();
@@ -18,10 +19,10 @@ export default function Page() {
   // Handle the submission of the sign-in form
   const onSignInPress = async () => {
     if (!isLoaded) return;
-    setError("");
 
     // Start the sign-in process using the email and password provided
     try {
+      setError("");
       const signInAttempt = await signIn.create({
         identifier: emailAddress,
         password,
@@ -40,25 +41,28 @@ export default function Page() {
     } catch (err: any) {
       // See https://clerk.com/docs/custom-flows/error-handling
       // for more info on error handling
-      setError(err.errors[0].message);
-      console.error(JSON.stringify(err, null, 2));
+
+      if (err.status === 422 && err.errors[0].message === "is missing") {
+        setError("Email is missing");
+      } else {
+        setError(err.errors[0].message);
+      }
     }
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignContent: "center",
-        justifyContent: "center",
-      }}
+    <KeyboardAwareScrollView
+      style={{ flex: 1 }}
+      contentContainerStyle={{ flexGrow: 1 }}
+      enableAutomaticScroll={true}
+      enableOnAndroid={true}
     >
       <View style={styles.container}>
         <Image
           style={styles.illustration}
-          source={require("@/assets/images/revenue-i2.png")}
+          source={require("@/assets/images/revenue-i4.png")}
         />
-        <Text style={styles.title}>Sign in</Text>
+        <Text style={styles.title}>Welcome Back</Text>
 
         {error ? (
           <View style={styles.errorBox}>
@@ -101,6 +105,6 @@ export default function Page() {
           </Link>
         </View>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 }

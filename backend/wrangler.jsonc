@@ -8,7 +8,6 @@
   // ],
   "vars": {
     "DATABASE_URL": "Database Url",
-    "CLERK_KEY": "Clerk Key",
     "UPSTASH_REDIS_REST_URL": "Redis Url",
     "UPSTASH_REDIS_REST_TOKEN": "Redis Token"
   }
