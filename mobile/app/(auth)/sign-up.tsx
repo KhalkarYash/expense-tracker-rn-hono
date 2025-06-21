@@ -1,11 +1,10 @@
 import * as React from "react";
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
 import { styles } from "@/assets/styles/auth.styles";
 import { COLORS } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -99,12 +98,17 @@ export default function SignUpScreen() {
   }
 
   return (
-    <KeyboardAwareScrollView
-      style={{ flex: 1 }}
-      contentContainerStyle={{ flexGrow: 1 }}
-      enableAutomaticScroll={true}
-      enableOnAndroid={true}
-    >
+    <KeyboardAvoidingView
+  behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+  style={{ flex: 1 }}
+  keyboardVerticalOffset={Platform.OS === 'android' ? 0 : 64} // adjust as needed
+>
+  <ScrollView
+    contentContainerStyle={{ flexGrow: 1 }}
+    keyboardShouldPersistTaps="handled"
+    showsVerticalScrollIndicator={false}
+  >
+
       <View style={styles.container}>
         <Image
           source={require("@/assets/images/revenue-i2.png")}
@@ -153,6 +157,7 @@ export default function SignUpScreen() {
           </Link>
         </View>
       </View>
-    </KeyboardAwareScrollView>
+      </ScrollView>
+      </KeyboardAvoidingView>
   );
 }
