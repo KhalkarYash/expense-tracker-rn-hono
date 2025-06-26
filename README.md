@@ -2,12 +2,6 @@
 
 A cross-platform **Expense Tracker** mobile app built using **React Native (frontend)** and **Hono + Cloudflare Workers (backend)**. This is a simplified version of a future visioned product idea, _“Paysa,”_ designed to help users track their daily expenses with ease.
 
-> ✅ **Backend**: REST API with Hono (JS) deployed on Cloudflare Workers
-> ✅ **Frontend**: React Native (Expo) app with JWT auth and async storage
-> ✅ **Purpose**: Built for mastering full-stack mobile dev with real deployment
-
----
-
 ## 📱 Features
 
 - User Authentication (JWT-based login/signup)
@@ -16,15 +10,12 @@ A cross-platform **Expense Tracker** mobile app built using **React Native (fron
 - Fully responsive UI
 - Built for real devices (Android/iOS)
 
----
-
 ## 🛠️ Tech Stack
 
 ### Frontend (Mobile)
 
 - React Native (via Expo)
 - React Native Stack Navigation
-- AsyncStorage
 - Clerk Authentication
 - StyleSheet for styling
 
@@ -34,8 +25,6 @@ A cross-platform **Expense Tracker** mobile app built using **React Native (fron
 - Cloudflare Workers
 - TiDB hosted MySQL database
 - Rate Limiting (Upstash Redis)
-
----
 
 ## 📂 Folder Structure
 
@@ -57,8 +46,6 @@ expense-tracker-rn-hono/
 │   └── App.tsx
 └── README.md
 ```
-
----
 
 ## 🚀 Getting Started
 
@@ -101,29 +88,28 @@ yarn install
 npx expo start
 ```
 
-> 🔐 **Don't forget to add your backend URL in `.env` or `constants.js` in mobile!**
-
----
+> 🔐 **Don't forget to add values for all the variables in your backend and mobile in `.env`!**
 
 ## 🔐 Environment Variables
 
 ### Backend
 
-Create a `.dev.vars` file:
+Inside `backend/.env`:
 
-```env
-DB_URL=your_database_url
+```ts
+DATABASE_URL = "db url here";
+UPSTASH_REDIS_REST_URL = "redis url here";
+UPSTASH_REDIS_REST_TOKEN = "redis token here";
 ```
 
 ### Mobile
 
-Inside `mobile/src/constants.ts`:
+Inside `mobile/.env`:
 
 ```ts
-export const API_URL = "https://your-backend.workers.dev";
+EXPO_PUBLIC_API_URL="backend url"
+EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY="clerk key"
 ```
-
----
 
 ## ✅ API Endpoints
 
@@ -133,14 +119,6 @@ export const API_URL = "https://your-backend.workers.dev";
 | POST   | `/api/transactions`                 | Add a new transaction              |
 | DELETE | `/api/transactions/:id`             | Delete a transaction by ID         |
 | GET    | `/api/transactions/summary/:userId` | Get transaction summary for a user |
-
----
-
-## 📸 Screenshots
-
-Great! Here’s the updated **📸 Screenshots** section of your README with embedded image paths and a link to the demo video—all neatly formatted using markdown.
-
----
 
 ## 📸 Screenshots
 
@@ -160,13 +138,9 @@ Great! Here’s the updated **📸 Screenshots** section of your README with emb
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | ![4](./mobile/assets/images/4.jpg) | ![5](./mobile/assets/images/5.jpg) | ![6](./mobile/assets/images/6.jpg) |
 
----
-
 ## 🧑‍💻 Author
 
 Made with ❤️ by **[Yash Khalkar](https://github.com/KhalkarYash)**
-
----
 
 ## 📜 License
 
