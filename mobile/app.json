@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yashkdev.paysa"
     },
     "android": {
       "package": "com.yashkdev.paysa",
@@ -45,7 +46,9 @@
       "router": {},
       "eas": {
         "projectId": "0af3103b-8b74-4570-a5d5-7f5a6e6735ab"
-      }
+      },
+      "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "env:EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY",
+      "EXPO_PUBLIC_API_URL": "env:EXPO_PUBLIC_API_URL"
     },
     "owner": "yashkhalkar"
   }

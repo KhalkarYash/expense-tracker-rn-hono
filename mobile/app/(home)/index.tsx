@@ -4,9 +4,9 @@ import PageLoader from "@/components/PageLoader";
 import { SignOutButton } from "@/components/SignOutButton";
 import { TransactionItem } from "@/components/TransactionItem";
 import { useTransactions } from "@/hooks/useTransactions";
-import { useUser } from "@clerk/clerk-expo";
+import { useAuth, useUser } from "@clerk/clerk-expo";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { Redirect, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
   Alert,
@@ -21,6 +21,9 @@ import { Transaction } from "@/types/types";
 import NoTransactionsFound from "@/components/NoTransactionsFound";
 
 export default function Page() {
+  const { isSignedIn, isLoaded } = useAuth();
+  console.log("AuthRoutesLayout:", { isLoaded, isSignedIn });
+
   const [refreshing, setRefreshing] = useState(false);
   const { user } = useUser();
   const router = useRouter();
@@ -32,6 +35,12 @@ export default function Page() {
   useEffect(() => {
     loadData();
   }, [loadData]);
+
+  if (!isLoaded) return <PageLoader />;
+
+  if (!isSignedIn) {
+    return <Redirect href={"/sign-in"} />;
+  }
 
   const onRefresh = async () => {
     setRefreshing(true);
