@@ -16,7 +16,7 @@ app.use("*", async (c: Context<Environment>, next: Next) => {
     console.error("Database connection error:", error);
     return c.json(
       { message: "Database connection failed" },
-      StatusCodes.INTERNAL_SERVER_ERROR
+      StatusCodes.INTERNAL_SERVER_ERROR,
     );
   }
   await next();
