@@ -20,5 +20,6 @@ build/
 *.log
 .env
 .env.*
+!.env*.example
 
 credentials.json
